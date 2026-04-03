@@ -35,4 +35,4 @@ build/
 /.mvn/wrapper/maven-wrapper.properties
 /mvnw
 /mvnw.cmd
-/src/main/resources/application-local.yaml
+/ag-admin/src/main/resources/application-local.yaml
