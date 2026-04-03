@@ -1,0 +1,15 @@
+${AnsiColor.BRIGHT_GREEN}
+  ______  ______
+ /\  __ \/\  ___\
+ \ \  __ \ \ \_— \
+  \ \_\ \_\ \_____\
+   \/_/\/_/\/_____/   ${AnsiColor.BRIGHT_CYAN}Starter${AnsiColor.DEFAULT}
+
+${AnsiColor.BRIGHT_YELLOW} ::::::::::::::::::::::::::::::::::::::::::::::::::::
+${AnsiColor.DEFAULT}
+  :: AgentGuard Starter    ::   Spring Boot ${spring-boot.version}
+  :: Profile               ::   ${spring.profiles.active:default}
+${AnsiColor.BRIGHT_GREEN}
+  >>  Application started!  Agent is on guard.
+${AnsiColor.DEFAULT}
+ ::::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -1,0 +1,13 @@
+# 将本文件复制为 application-local.yaml，并根据个人环境修改
+# 由于 .gitignore 排除了实际文件
+# 每个人的账号密码只保存在本地
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/base_framework?currentSchema=public&preferQueryMode=simple
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
