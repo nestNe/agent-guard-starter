@@ -10,6 +10,7 @@ import com.seehold.exception.BusinessException;
 import com.seehold.exception.UnauthorizedException;
 import com.seehold.mapper.UserMapper;
 import com.seehold.service.AuthService;
+import com.seehold.constant.RedisKeyConstant;
 import com.seehold.utils.JwtUtil;
 import com.seehold.vo.LoginVO;
 import com.seehold.vo.UserVO;
@@ -34,9 +35,6 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final RedisTemplate<String, Object> redisTemplate;
-
-    private static final String TOKEN_BLACKLIST_PREFIX = "token:blacklist:";
-    private static final String USER_TOKEN_PREFIX = "user:token:";
 
     @Override
     public LoginVO login(LoginDTO loginDTO) {
@@ -70,7 +68,7 @@ public class AuthServiceImpl implements AuthService {
         String refreshToken = jwtUtil.generateToken(user.getId(), user.getUsername(), true);
 
         // 存储到Redis
-        String userTokenKey = USER_TOKEN_PREFIX + user.getId();
+        String userTokenKey = RedisKeyConstant.USER_TOKEN_PREFIX + user.getId();
         redisTemplate.opsForValue().set(userTokenKey, accessToken, 1, TimeUnit.DAYS);
 
         // 构建返回对象
@@ -139,12 +137,12 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void logout(Long userId) {
-        String userTokenKey = USER_TOKEN_PREFIX + userId;
+        String userTokenKey = RedisKeyConstant.USER_TOKEN_PREFIX + userId;
         String token = (String) redisTemplate.opsForValue().get(userTokenKey);
         if (token != null) {
             // 加入黑名单
             redisTemplate.opsForValue().set(
-                    TOKEN_BLACKLIST_PREFIX + token,
+                    RedisKeyConstant.TOKEN_BLACKLIST_PREFIX + token,
                     "logout",
                     1,
                     TimeUnit.DAYS

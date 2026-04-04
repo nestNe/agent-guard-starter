@@ -42,12 +42,3 @@ mybatis-plus:
 logging:
   level:
     com.seehold.mapper: debug
-
-#  ai:
-#    ollama:
-#      base-url: http://localhost:11434
-#      chat:
-#        model: deepseek-r1:7b
-#        options:
-#          temperature: 0.7
-#          num-predict: 512 # 可选：最大生成 token 数

@@ -23,6 +23,7 @@
         <module>ag-core</module>
         <module>ag-api</module>
         <module>ag-admin</module>
+        <module>ag-ai</module>
     </modules>
 
     <properties>
@@ -60,6 +61,11 @@
             <dependency>
                 <groupId>com.seehold</groupId>
                 <artifactId>ag-admin</artifactId>
+                <version>${ag.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.seehold</groupId>
+                <artifactId>ag-ai</artifactId>
                 <version>${ag.version}</version>
             </dependency>
 
