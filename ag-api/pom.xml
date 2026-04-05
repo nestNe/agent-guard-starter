@@ -18,6 +18,10 @@
             <groupId>com.seehold</groupId>
             <artifactId>ag-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.seehold</groupId>
+            <artifactId>ag-ai</artifactId>
+        </dependency>
 
         <!-- Validation -->
         <dependency>

@@ -19,12 +19,6 @@
             <artifactId>ag-common</artifactId>
         </dependency>
 
-        <!-- 依赖ai模块 -->
-        <dependency>
-            <groupId>com.seehold</groupId>
-            <artifactId>ag-ai</artifactId>
-        </dependency>
-
         <!-- Web支持 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
