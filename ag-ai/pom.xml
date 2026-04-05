@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.seehold</groupId>
-            <artifactId>ag-common</artifactId>
+            <artifactId>ag-core</artifactId>
         </dependency>
 
         <dependency>
@@ -29,10 +29,6 @@
             <artifactId>spring-ai-starter-model-openai</artifactId>
         </dependency>
 
-        <!--<dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-starter-model-ollama</artifactId>
-        </dependency>-->
     </dependencies>
 
 

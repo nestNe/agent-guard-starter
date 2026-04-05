@@ -17,30 +17,26 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/api/ai")
 public class ChatController {
 
-    private final ChatClient chatClient;
+    private final ChatClient userManageClient;
 
+    private final ChatClient testClient;
+
+    /**
+     * 对话
+     * @param message
+     * @return
+     */
     @PostMapping("/chat")
     @PreAuthorize("hasAuthority('agent:chat')")
-    public Result<String> chat(@RequestParam("message") String message) {
+    public String chat(@RequestParam("message") String message) {
         log.info("Received message: {}", message);
-        String res = chatClient
+        String res = userManageClient
                 .prompt(message)
                 .call()
                 .content();
 
         log.info("Result of message: {}", res);
-        return Result.success(res);
-    }
-
-    @PostMapping("/chat/stream")
-    @PreAuthorize("hasAuthority('agent:chat')")
-    public Flux<String> chatStream(@RequestParam("message") String message) {
-        log.info("Received message: {}", message);
-        //todo 流式输出后的bug暂未修复
-        return chatClient
-                .prompt(message)
-                .stream()
-                .content();
+        return res;
     }
 
 }
