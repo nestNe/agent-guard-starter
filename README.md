@@ -15,6 +15,45 @@
  ::::::::::::::::::::::::::::::::::::::::::::::::::::
 ```
 
+#### 项目模块介绍
+```text
+agent-guard-starter/
+├── ag-common/          # 基础模块
+├── ag-core/            # 核心业务模块
+├── ag-ai/              # AI 模块
+├── ag-api/             # 接口模块
+├── ag-admin/           # 启动模块
+└── AGS-ui/             # 前端模块
+    └── ags-frontend/   # 前端应用
+```
+
+```mermaid
+graph TD 
+     %% 定义样式 
+     classDef base fill:#f9f9f9,stroke:#333,stroke-width:2px; 
+     classDef core fill:#e1f5fe,stroke:#0277bd,stroke-width:2px; 
+     classDef ai fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px; 
+     classDef api fill:#fff9c4,stroke:#fbc02d,stroke-width:2px; 
+     classDef admin fill:#ffccbc,stroke:#d84315,stroke-width:2px; 
+     classDef frontend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px; 
+ 
+     %% 模块节点 
+     Common[ag-common<br/>基础模块]:::base 
+     Core[ag-core<br/>核心业务模块]:::core 
+     AI[ag-ai<br/>AI模块]:::ai 
+     API[ag-api<br/>接口模块]:::api 
+     Admin[ag-admin<br/>启动模块]:::admin 
+     Frontend[AGS-ui<br/>前端模块]:::frontend 
+ 
+     %% 依赖关系连线 
+     Core --> Common 
+     AI --> Core 
+     API --> Core 
+     API --> AI 
+     Admin --> API 
+     Frontend --> API 
+```
+
 #### 配置文件：
 需要copy application-local-example.yaml为application-local.yaml
 ```text
