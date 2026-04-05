@@ -30,12 +30,12 @@ agent-guard-starter/
 ```mermaid
 graph TD 
      %% 定义样式 
-     classDef base fill:#f9f9f9,stroke:#333,stroke-width:2px; 
-     classDef core fill:#e1f5fe,stroke:#0277bd,stroke-width:2px; 
-     classDef ai fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px; 
-     classDef api fill:#fff9c4,stroke:#fbc02d,stroke-width:2px; 
-     classDef admin fill:#ffccbc,stroke:#d84315,stroke-width:2px; 
-     classDef frontend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px; 
+     classDef base fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000000; 
+     classDef core fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#000000; 
+     classDef ai fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000000; 
+     classDef api fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,color:#000000; 
+     classDef admin fill:#ffccbc,stroke:#d84315,stroke-width:2px,color:#000000; 
+     classDef frontend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000000; 
  
      %% 模块节点 
      Common[ag-common<br/>基础模块]:::base 
