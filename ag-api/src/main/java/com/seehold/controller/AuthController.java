@@ -1,11 +1,12 @@
 // AuthController.java
 package com.seehold.controller;
 
-import com.seehold.result.Result;
 import com.seehold.dto.LoginDTO;
 import com.seehold.dto.RegisterDTO;
+import com.seehold.result.Result;
 import com.seehold.security.UserDetailsImpl;
 import com.seehold.service.AuthService;
+import com.seehold.service.UserService;
 import com.seehold.vo.LoginVO;
 import com.seehold.vo.UserVO;
 import jakarta.validation.Valid;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
+    private final UserService userService;
 
     @PostMapping("/register")
     public Result<UserVO> register(@Valid @RequestBody RegisterDTO registerDTO) {
@@ -43,7 +45,11 @@ public class AuthController {
 
     @GetMapping("/me")
     public Result<UserVO> getCurrentUser(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        // 这里可以从缓存或重新查询获取完整信息
-        return Result.success();
+        // 从数据库获取完整用户信息
+        if (userDetails == null) {
+            return Result.error("用户未登录，请先登录");
+        }
+        UserVO userVO = userService.getUserById(userDetails.getId());
+        return Result.success(userVO);
     }
 }
