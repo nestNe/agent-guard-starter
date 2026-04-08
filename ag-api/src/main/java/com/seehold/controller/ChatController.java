@@ -28,7 +28,7 @@ public class ChatController {
      */
     @PostMapping("/chat")
     @PreAuthorize("hasAuthority('agent:chat')")
-    public String chat(@RequestParam("message") String message) {
+    public Result<String> chat(@RequestParam("message") String message) {
         log.info("Received message: {}", message);
         String res = userManageClient
                 .prompt(message)
@@ -36,7 +36,7 @@ public class ChatController {
                 .content();
 
         log.info("Result of message: {}", res);
-        return res;
+        return Result.success(res);
     }
 
 }
