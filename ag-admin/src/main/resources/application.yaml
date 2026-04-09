@@ -42,3 +42,7 @@ mybatis-plus:
 logging:
   level:
     com.seehold.mapper: debug
+
+seehold:
+  default:
+    role-name: user

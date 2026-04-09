@@ -2,13 +2,17 @@
 package com.seehold.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.seehold.dto.LoginDTO;
 import com.seehold.dto.RegisterDTO;
+import com.seehold.entity.Role;
 import com.seehold.entity.User;
 import com.seehold.enums.StatusEnum;
 import com.seehold.exception.BusinessException;
 import com.seehold.exception.UnauthorizedException;
+import com.seehold.mapper.RoleMapper;
 import com.seehold.mapper.UserMapper;
+import com.seehold.mapper.UserRoleMapper;
 import com.seehold.service.AuthService;
 import com.seehold.constant.RedisKeyConstant;
 import com.seehold.utils.JwtUtil;
@@ -17,6 +21,7 @@ import com.seehold.vo.UserVO;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,9 +37,15 @@ import java.util.concurrent.TimeUnit;
 public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
+    private final UserRoleMapper userRoleMapper;
+    private final RoleMapper roleMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final RedisTemplate<String, Object> redisTemplate;
+
+    @Value("${seehold.default.role-name}")
+    private String roleName = "user";
+
 
     @Override
     public LoginVO login(LoginDTO loginDTO) {
@@ -132,6 +143,13 @@ public class AuthServiceImpl implements AuthService {
 
         userMapper.insert(user);
 
+        // 设置默认角色
+        QueryWrapper<Role> qw = new QueryWrapper<>();
+        qw.eq("name", roleName);
+        Role defaultRole = roleMapper.selectOne(qw);
+        if (defaultRole != null) {
+            userRoleMapper.insertUserRole(user.getId(), defaultRole.getId(), "0");
+        }
         return buildUserVO(user);
     }
 
