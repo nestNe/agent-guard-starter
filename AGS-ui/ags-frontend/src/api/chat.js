@@ -4,6 +4,8 @@ import service from './axios'
 export const chatApi = {
   // 发送消息
   sendMessage: (message) => {
-    return service.post(`/ai/chat?message=${encodeURIComponent(message)}`)
+    return service.post(`/ai/chat?message=${encodeURIComponent(message)}`, {}, {
+      timeout: 60000 // 1分钟超时
+    })
   }
 }
